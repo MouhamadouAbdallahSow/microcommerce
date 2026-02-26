@@ -3,19 +3,8 @@ package com.ecommerce.microcommerce.web.controller;
 import com.ecommerce.microcommerce.model.Product;
 import com.ecommerce.microcommerce.web.dao.ProductDao;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-//import tools.jackson.databind.ser.FilterProvider;
-//import tools.jackson.databind.ser.std.SimpleBeanPropertyFilter;
-//import tools.jackson.databind.ser.std.SimpleFilterProvider;
-
-
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-
 
 import java.net.URI;
 import java.util.List;
@@ -32,13 +21,8 @@ public class ProductController {
 
     //Récupérer la liste des produits
     @GetMapping("/Produits")
-    public MappingJacksonValue listeProduits() {
-        List<Product> produits = productDao.findAll();
-        SimpleBeanPropertyFilter monFiltre = SimpleBeanPropertyFilter.serializeAllExcept("prixAchat");
-        FilterProvider listDeNosFiltres = new SimpleFilterProvider().addFilter("monFiltreDynamique", monFiltre);
-        MappingJacksonValue produitsFiltres = new MappingJacksonValue(produits);
-        produitsFiltres.setFilters(listDeNosFiltres);
-        return produitsFiltres;
+    public List<Product> listeProduits() {
+         return productDao.findAll();
     }
 
     @GetMapping(value = "/Produits/{id}")

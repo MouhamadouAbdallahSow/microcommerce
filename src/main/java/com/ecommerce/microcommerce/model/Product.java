@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 //@JsonIgnoreProperties(value = {"prixAchat", "id"})
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nom;
     private int prix;
@@ -56,7 +56,7 @@ public class Product {
         return prixAchat;
     }
 
-    public void setPrixAchat(int prix) {
+    public void setPrixAchat(int prixAchat) {
         this.prixAchat = prixAchat;
     }
 
